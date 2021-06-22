@@ -1,0 +1,20 @@
+Class Target - 
+    Properties - 
+        Name
+        Coordinates
+        Celestial Object Type
+
+    Methods - 
+        Initializer - 
+            Searches SIMBAD for object name, grabs coordinates of given reference/epoch, populates properties of object
+        Name Resolver - 
+            Searches SIMBAD for object name, grabs coordinates of given reference/epoch, modifies properties of object
+
+
+Other Methods - 
+
+    FITS retriever - 
+
+    Grid Builder - 
+
+    Follow up plotter - 
