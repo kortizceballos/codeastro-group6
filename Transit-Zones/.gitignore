@@ -1,6 +1,0 @@
-.idea
-*.pkl
-DataOut
-FigOut
-.gitattributes
-gal*.txt
