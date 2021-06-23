@@ -22,11 +22,31 @@ Class Target -
 Other Methods - 
 
     FITS retriever - 
+        take as input target object, survey, fov
         construct query parameter dictionary
         encode hips2fits url
         query hips2fits and store FITS file
 
         
     Grid Builder - 
+        take as input the target object
+        set list of default surveys (e.g. X = ['2MASS', 'SDSS', etc...])
+        set-up the figure and axes
+        for each survey in X:
+            run FITS retriever to obtain FITS file
+            plot FITS file data on a subplot
+            label axes with coordinates from FITS header
+            set subplot title from survey name
+        plt.show() the final figure
+
 
     Follow up plotter - 
+        take as input a selected survey
+        determine target object from stored variable
+        set-up the figure and axes
+        run FITS retriever with selected survey to obtain FITS file
+        plot the hdu data
+        label axes with coordinates from FITS header
+        set plot title from survey name
+        plt.savefig() as a pdf
+        plt.show()
