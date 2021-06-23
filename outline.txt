@@ -3,18 +3,30 @@ Class Target -
         Name
         Coordinates
         Celestial Object Type
+        Coordinate Frame?
 
     Methods - 
         Initializer - 
-            Searches SIMBAD for object name, grabs coordinates of given reference/epoch, populates properties of object
+            populates name with command line inputs
+            populates coordinate frame with command line inputs
+            create class level custom simbad object with desired VOTable fields for results
+            query simbad and get results table
+            parse results table, populate coordinates and object type
+
+
         Name Resolver - 
-            Searches SIMBAD for object name, grabs coordinates of given reference/epoch, modifies properties of object
+            use new name to query simbad and get results table
+            parse results table, populate coordinates and object type
 
 
 Other Methods - 
 
     FITS retriever - 
+        construct query parameter dictionary
+        encode hips2fits url
+        query hips2fits and store FITS file
 
+        
     Grid Builder - 
 
     Follow up plotter - 
