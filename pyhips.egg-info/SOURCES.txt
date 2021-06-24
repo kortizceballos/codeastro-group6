@@ -1,0 +1,6 @@
+README.md
+setup.py
+pyhips.egg-info/PKG-INFO
+pyhips.egg-info/SOURCES.txt
+pyhips.egg-info/dependency_links.txt
+pyhips.egg-info/top_level.txt

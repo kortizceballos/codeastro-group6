@@ -44,34 +44,10 @@ class Target(object):
         self.main_id = results["MAIN_ID"][0]
 
 # testing query functionality. try this in your codeastro environment
-def main():
-    id = None
-    frame = "ICRS"
-    survey = None
-
-    if "-h" in sys.argv or "--help" in sys.argv:
-        print("Usage: %s [options]" % sys.argv[0])
-        print("\toptions:")
-        print("\t--help (-h)\t\t\tprint options")
-        print("\t-id [string]\t\t\trequired, target identifier")
-        print("\t-frame [string]\t\t\toptional, coordinate frame. default \"ICRS\"")
-        print()
-        sys.exit(1)
-
-    if "-id" in sys.argv:
-        ind = sys.argv.index("-id")
-        id = sys.argv[ind+1]
-    else:
-        print("Target ID Required.")
-        sys.exit(1)
-
-    if "-frame" in sys.argv:
-        ind = sys.argv.index("-frame")
-        frame = sys.argv[ind+1]
-
-    if "-survey" in sys.argv:
-        ind = sys.argv.index("-survey")
-        survey = sys.argv[ind+1]
+def get_image(id, frame="ICRS", survey=None):
+    id = id
+    frame = frame
+    survey = survey
 
     # instantiate target object
     tgt = Target(id=id, frame=frame, survey=survey)
@@ -99,6 +75,34 @@ def main():
     fig = plt.figure()
     ax=plt.gca()
     ax.imshow(im, cmap='viridis', origin='lower')
+
+def main():
+    if "-h" in sys.argv or "--help" in sys.argv:
+        print("Usage: %s [options]" % sys.argv[0])
+        print("\toptions:")
+        print("\t--help (-h)\t\t\tprint options")
+        print("\t-id [string]\t\t\trequired, target identifier")
+        print("\t-frame [string]\t\t\toptional, coordinate frame. default \"ICRS\"")
+        print()
+        sys.exit(1)
+
+    if "-id" in sys.argv:
+        ind = sys.argv.index("-id")
+        id = sys.argv[ind+1]
+    else:
+        print("Target ID Required.")
+        sys.exit(1)
+
+    if "-frame" in sys.argv:
+        ind = sys.argv.index("-frame")
+        frame = sys.argv[ind+1]
+
+    if "-survey" in sys.argv:
+        ind = sys.argv.index("-survey")
+        survey = sys.argv[ind+1]
+
+    get_image(id, frame, survey)
+
 
 if __name__ == "__main__":
     main()
