@@ -137,7 +137,7 @@ def grid_builder(id, frame="ICRS", survey_list = ['DSS', 'DSS2/red', 'CDS/P/AKAR
         return(1)
 
     # make the figure for the grid
-    fig, axs = plt.subplots(1, len(survey_list), figsize=(4 * len(survey_list), 3 * 1), facecolor='w', edgecolor='k')
+    fig, axs = plt.subplots(1, len(survey_list), figsize=(4 * len(survey_list), 3), facecolor='w', edgecolor='k')
     fig.subplots_adjust(hspace = .2, wspace=.001)
 
     axs = axs.ravel()
@@ -146,7 +146,7 @@ def grid_builder(id, frame="ICRS", survey_list = ['DSS', 'DSS2/red', 'CDS/P/AKAR
 
         # make hips2fits query to be placed in url
         query_params = {
-            'hips': tgt.survey,
+            'hips': survey,
             'object': tgt.id,
             'ra': tgt.coords.ra.value,
             'dec': tgt.coords.dec.value,
@@ -164,7 +164,7 @@ def grid_builder(id, frame="ICRS", survey_list = ['DSS', 'DSS2/red', 'CDS/P/AKAR
         axs[i].imshow(im, origin='lower', cmap=cmap)
         
         i += 1
-
+    fig.tight_layout()
     fig.savefig(f"{tgt.main_id}" + "_grid.jpg", dpi=200)
     return(0)
 
