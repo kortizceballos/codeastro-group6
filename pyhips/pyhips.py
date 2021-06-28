@@ -1,6 +1,7 @@
 """Simple Python interface to the hips2fits service provided by the Centre de Données astronomiques de Strasbourg"""
 
 import sys
+import argparse
 from astroquery.simbad import Simbad
 from astropy.io import fits
 import astropy.units as u
@@ -111,3 +112,52 @@ def get_image(id, frame="ICRS", survey="DSS", cmap="gray", fov=1.0):
 # TODO: grid_builder() - given a list of surveys, plot all of them together as subplots
 
 # TODO: followup_plotter() - takes a single survey, sets up figure and axes, reloads desired FITS file, plots the data as above
+
+
+# Creating the parser
+my_parser = argparse.ArgumentParser(prog = 'PyHiPS', description='Show a target in the sky as seen by a HiPS survey.')
+
+# Adding the arguments
+my_parser.add_argument('Target',
+                       metavar='Target Name',
+                       type=str,
+                       help='The target name to be resolved')
+
+my_parser.add_argument('--frame',
+                       action='store',
+                       metavar='Frame Name',
+                       type=str,
+                       default='ICRS',
+                       help='The name of the frame')
+
+my_parser.add_argument('--survey',
+                       action='store',
+                       metavar='Survey Name',
+                       type=str,
+                       default='DSS',
+                       help='The name of the desired survey')
+
+my_parser.add_argument('--cmap',
+                       action='store',
+                       metavar='Colormap',
+                       type=str,
+                       default='gray',
+                       help='The name of the colormap')
+
+my_parser.add_argument('--fov',
+                       action='store',
+                       metavar='Field of View',
+                       type=float,
+                       default=1.0,
+                       help='The field of view')
+
+# Execute parse_args()
+args = my_parser.parse_args()
+
+# Define main() process for running from command line
+def main():
+    get_image(args.Target, frame=args.frame, survey=args.survey, cmap=args.cmap, fov=args.fov)
+
+#  Run main if program is run from the command line
+if __name__ == '__main__':
+    main()
