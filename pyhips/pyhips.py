@@ -189,7 +189,7 @@ my_parser.add_argument('--survey', '--surveys',
                        action='store',
                        metavar='Survey Name(s)',
                        type=list,
-                       default=['DSS'],
+                       default=['DSS', 'DSS2/red', 'CDS/P/AKARI/FIS/N160', 'PanSTARRS/DR1/z', '2MASS/J', 'AllWISE/W3'],
                        help='The name of the desired survey (or several names if using --grid)')
 
 my_parser.add_argument('--cmap',
@@ -208,7 +208,6 @@ my_parser.add_argument('--fov',
 
 my_parser.add_argument('-g', '--grid',
                        action='store_true',
-                       metavar='Save multi-survey grid',
                        help='Used to save a grid with several surveys instead of a single image')
 
 # Execute parse_args()
