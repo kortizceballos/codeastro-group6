@@ -130,12 +130,12 @@ my_parser.add_argument('--frame',
                        default='ICRS',
                        help='The name of the frame')
 
-my_parser.add_argument('--survey',
+my_parser.add_argument('--survey', '--surveys',
                        action='store',
-                       metavar='Survey Name',
-                       type=str,
-                       default='DSS',
-                       help='The name of the desired survey')
+                       metavar='Survey Name(s)',
+                       type=list,
+                       default=['DSS'],
+                       help='The name of the desired survey (or several names if using --grid)')
 
 my_parser.add_argument('--cmap',
                        action='store',
@@ -151,12 +151,20 @@ my_parser.add_argument('--fov',
                        default=1.0,
                        help='The field of view')
 
+my_parser.add_argument('-g', '--grid',
+                       action='store_true',
+                       metavar='Save multi-survey grid',
+                       help='Used to save a grid with several surveys instead of a single image')
+
 # Execute parse_args()
 args = my_parser.parse_args()
 
 # Define main() process for running from command line
 def main():
-    get_image(args.Target, frame=args.frame, survey=args.survey, cmap=args.cmap, fov=args.fov)
+    if args.grid:
+        grid_builder(args.Target, frame=args.frame, survey_list=args.survey, cmap=args.cmap, fov=args.fov)
+    else:
+        get_image(args.Target, frame=args.frame, survey=args.survey[0], cmap=args.cmap, fov=args.fov)
 
 #  Run main if program is run from the command line
 if __name__ == '__main__':
